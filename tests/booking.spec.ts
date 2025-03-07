@@ -6,7 +6,7 @@ test('book_appointment', async ({ page }) => {
     const date = '//div[@id="{formatted_date}-23"]';
     
     await page.goto(url, { timeout: 50000 });
-    console.log('11111111!!!');
+
     // Нажатие "Нет, спасибо" (отказаться от скачивания)
     await page.locator('//a[@class="download-popup-button secondary"]').click();
 
@@ -16,11 +16,6 @@ test('book_appointment', async ({ page }) => {
     // Ожидание iframe со слотами
     await page.waitForSelector('iframe');
     const frame = page.frameLocator('iframe');
-    console.log(frame);
-    
-    // 
-    
-    
 
     await expect(page).toHaveTitle('MUSbooking');
 })
