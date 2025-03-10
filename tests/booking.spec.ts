@@ -37,5 +37,8 @@ test('book_appointment', async ({ page }) => {
     await frame.locator('//input[@id="login"]').fill(login)
     await frame.locator('//input[@id="password"]').fill(password)
 
+    // Нажатие на "Войти"
+    await frame.locator('//button[@id="login-modal_form__btn-submit"]').click()
+
     await expect(page).toHaveTitle('MUSbooking');
 })
