@@ -1,4 +1,5 @@
 import { test, Page, expect } from '@playwright/test';
+import { log } from 'console';
 
 test('book_appointment', async ({ page }) => {
     
@@ -11,6 +12,9 @@ test('book_appointment', async ({ page }) => {
     const monthInAdvance = new Date(currentDate.getTime() + thirtyDays);
     const dateTimeLocator: string = `//div[@id="${datePrettyfier(monthInAdvance)}-23"]`; // refactor it
     
+    const login = '9617847556';
+    const password = 'Password1234!';
+
     await page.goto(url, { timeout: 50000 });
 
     // Нажатие "Нет, спасибо" (отказаться от скачивания)
@@ -28,6 +32,10 @@ test('book_appointment', async ({ page }) => {
 
     // Нажатие на кнопку Далее
     await frame.locator('//a[contains(@class, "next_button_check") and span[text()="Далее"]]').click()
+
+    // Ввод логина и пароля
+    await frame.locator('//input[@id="login"]').fill(login)
+    await frame.locator('//input[@id="password"]').fill(password)
 
     await expect(page).toHaveTitle('MUSbooking');
 })
