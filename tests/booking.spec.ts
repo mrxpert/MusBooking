@@ -26,5 +26,8 @@ test('book_appointment', async ({ page }) => {
     // Нажатие на слот в таблице
     await frame.locator(dateTimeLocator).click({ timeout: 50_000 });
 
+    // Нажатие на кнопку Далее
+    await frame.locator('//a[contains(@class, "next_button_check") and span[text()="Далее"]]').click()
+
     await expect(page).toHaveTitle('MUSbooking');
 })
