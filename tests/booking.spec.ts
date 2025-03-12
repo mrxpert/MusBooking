@@ -13,8 +13,11 @@ test('book_appointment', async ({ page }) => {
     const monthInAdvance = new Date(currentDate.getTime() + thirtyDays);
     const dateTimeLocator = `//div[@id="${datePrettyfier(monthInAdvance)}-23"]`; // refactor it
     
-    const login = '9617847556';
-    const password = 'Password1234!';
+    const userLogin = '9610455515';
+    const userPassword = 'Password1234!';
+
+    const userLoanLogin = '9617847556';
+    const userLoanPassword = 'Password1234!';
 
     await page.goto(url, { timeout: 50000 });
 
@@ -35,8 +38,8 @@ test('book_appointment', async ({ page }) => {
     await frame.locator('//a[contains(@class, "next_button_check") and span[text()="Далее"]]').click();
 
     // Ввод логина и пароля
-    await frame.locator('//input[@id="login"]').fill(login);
-    await frame.locator('//input[@id="password"]').fill(password);
+    await frame.locator('//input[@id="login"]').fill(userLogin);
+    await frame.locator('//input[@id="password"]').fill(userPassword);
 
     // Нажатие на "Войти"
     await frame.locator('//button[@id="login-modal_form__btn-submit"]').click();
@@ -44,5 +47,7 @@ test('book_appointment', async ({ page }) => {
     // Проставка чекбокса "Согласен с правилами"
     await frame.locator('//input[@id="rules"]').check();
 
-    await expect(page).toHaveTitle('Репетиционная база Hendrix Studio Пролетарская I - MUSbooking', { timeout: 30_000 });
+    await page.waitForTimeout(30_000);
+
+    await expect(page).toHaveTitle('Репетиционная база Hendrix Studio Пролетарская I - MUSbooking');
 })
