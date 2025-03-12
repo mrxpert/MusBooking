@@ -10,7 +10,7 @@ test('book_appointment', async ({ page }) => {
     const currentDate = new Date();
     const thirtyDays = 30 * 24 * 60 * 60 * 1000;
     const monthInAdvance = new Date(currentDate.getTime() + thirtyDays);
-    const dateTimeLocator: string = `//div[@id="${datePrettyfier(monthInAdvance)}-23"]`; // refactor it
+    const dateTimeLocator = `//div[@id="${datePrettyfier(monthInAdvance)}-23"]`; // refactor it
     
     const login = '9617847556';
     const password = 'Password1234!';
@@ -30,15 +30,15 @@ test('book_appointment', async ({ page }) => {
     // Нажатие на слот в таблице
     await frame.locator(dateTimeLocator).click({ timeout: 50_000 });
 
-    // Нажатие на кнопку Далее
-    await frame.locator('//a[contains(@class, "next_button_check") and span[text()="Далее"]]').click()
+    // Нажатие на кнопку "Далее"
+    await frame.locator('//a[contains(@class, "next_button_check") and span[text()="Далее"]]').click();
 
     // Ввод логина и пароля
-    await frame.locator('//input[@id="login"]').fill(login)
-    await frame.locator('//input[@id="password"]').fill(password)
+    await frame.locator('//input[@id="login"]').fill(login);
+    await frame.locator('//input[@id="password"]').fill(password);
 
     // Нажатие на "Войти"
-    await frame.locator('//button[@id="login-modal_form__btn-submit"]').click()
+    await frame.locator('//button[@id="login-modal_form__btn-submit"]').click();
 
     await expect(page).toHaveTitle('MUSbooking');
 })
