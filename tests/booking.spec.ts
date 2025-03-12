@@ -1,5 +1,6 @@
 import { test, Page, expect } from '@playwright/test';
 import { log } from 'console';
+import { TIMEOUT } from 'dns';
 
 test('book_appointment', async ({ page }) => {
     
@@ -40,5 +41,8 @@ test('book_appointment', async ({ page }) => {
     // Нажатие на "Войти"
     await frame.locator('//button[@id="login-modal_form__btn-submit"]').click();
 
-    await expect(page).toHaveTitle('MUSbooking');
+    // Проставка чекбокса "Согласен с правилами"
+    await frame.locator('//input[@id="rules"]').check();
+
+    await expect(page).toHaveTitle('Репетиционная база Hendrix Studio Пролетарская I - MUSbooking', { timeout: 30_000 });
 })
