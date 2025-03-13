@@ -1,7 +1,8 @@
 import { test, Page, expect } from '@playwright/test';
 
 test('book_appointment', async ({ page }) => {
-
+    test.slow();
+    
     const url = 'https://musbooking.com/katalog/repetitsionnye-bazy/moskva-i-mo/repetitsionnaya-baza-proletarskaya-krestyanskaya-zastava-hendrix-studio-proletarskaya-i-vintage';
  
     const datePrettyfier = (date: Date) : string => (date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString());
