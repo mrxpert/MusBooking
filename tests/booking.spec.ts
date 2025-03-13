@@ -47,6 +47,17 @@ test('book_appointment', async ({ page }) => {
     // Проставка чекбокса "Согласен с правилами"
     await frame.locator('//input[@id="rules"]').check();
 
+    // Внутренний текст кнопки "Забронировать"
+    const btnBook = frame.locator('//*[@id="footer-next-btn"]/a/span');
+    const btnBookText = await btnBook.innerText();
+
+    if(btnBookText.includes('ЗАБРОНИРОВАТЬ')) {
+        console.log('✅ Элемент содержит нужный текст:', 'ЗАБРОНИРОВАТЬ');
+    }
+    else {
+        console.log('❌ Элемент НЕ содержит нужный текст. Текущий текст:', btnBookText);
+    }
+
     await page.waitForTimeout(30_000);
 
     await expect(page).toHaveTitle('Репетиционная база Hendrix Studio Пролетарская I - MUSbooking');
