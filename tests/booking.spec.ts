@@ -1,9 +1,7 @@
 import { test, Page, expect } from '@playwright/test';
-import { log } from 'console';
-import { TIMEOUT } from 'dns';
 
 test('book_appointment', async ({ page }) => {
-    
+
     const url = 'https://musbooking.com/katalog/repetitsionnye-bazy/moskva-i-mo/repetitsionnaya-baza-proletarskaya-krestyanskaya-zastava-hendrix-studio-proletarskaya-i-vintage';
  
     const datePrettyfier = (date: Date) : string => (date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString());
@@ -58,8 +56,6 @@ test('book_appointment', async ({ page }) => {
     else {
         console.log('❌ Элемент НЕ содержит нужный текст. Текущий текст:', btnBookText);
     }
-
-    await page.waitForTimeout(30_000);
 
     await expect(page).toHaveTitle('Репетиционная база Hendrix Studio Пролетарская I - MUSbooking');
 })
