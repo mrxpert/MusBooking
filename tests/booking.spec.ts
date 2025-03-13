@@ -53,6 +53,7 @@ test('book_appointment', async ({ page }) => {
 
     if(btnBookText.includes('ЗАБРОНИРОВАТЬ')) {
         console.log('✅ Элемент содержит нужный текст:', 'ЗАБРОНИРОВАТЬ');
+        btnBook.click();
     }
     else {
         console.log('❌ Элемент НЕ содержит нужный текст. Текущий текст:', btnBookText);
